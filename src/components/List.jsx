@@ -61,12 +61,12 @@ import UserButton from './UserButton'
 // }
 
 function List(props) {
-  console.log('From List: ', props)
-  const users = props.data
+  console.log('List: ', props)
+  const { users, selected } = props
 
   const handleClick = (id) => {
     console.log(id)
-    // props.onClick(id)
+    props.onClick(id)
   }
 
   return (
@@ -74,7 +74,10 @@ function List(props) {
       <ul>
         {users.map((o) => (
           <li key={o.id} className="list-item">
-            <UserButton id={o.id} onClick={handleClick}>
+            <UserButton
+              id={o.id}
+              onClick={handleClick}
+              isSelected={selected === o.id}>
               {o.name}
             </UserButton>
           </li>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const withData = (endpoint, dataToState) => (WrappedComponent) => {
-  console.log(endpoint, dataToState, WrappedComponent)
-  const [data, setData] = useState(dataToState)
+const withData = (endpoint, propName, props) => (WrappedComponent) => {
+  console.log(endpoint, propName, props, WrappedComponent)
+  const [data, setData] = useState(propName)
   // API Helpers
   const [isLoading, setLoading] = useState(false)
   const [hasError, setError] = useState(null)
@@ -15,7 +15,7 @@ const withData = (endpoint, dataToState) => (WrappedComponent) => {
 
       // Call a helper function to get/render endpoint, if needed
       if (typeof endpoint === 'function') {
-        endpoint = endpoint(dataToState)
+        endpoint = endpoint(propName)
       }
 
       // Fetch data from API
@@ -31,14 +31,14 @@ const withData = (endpoint, dataToState) => (WrappedComponent) => {
         const dataFetched = await response.json()
         // Push fetched data into WrappedComponent state
         console.log('Data is ', dataFetched)
-        setData(dataFetched)
+        setData({ [propName]: dataFetched })
         setError(null)
       } catch (e) {
         setError(e)
       } finally {
         // Remove loader
         setLoading(false)
-        console.log('Done?', dataToState, data, hasError, isLoading)
+        console.log('Done?', propName, data, hasError, isLoading)
       }
     }
 
@@ -48,6 +48,7 @@ const withData = (endpoint, dataToState) => (WrappedComponent) => {
     // Run once, no cleaning needed
   }, [])
 
+  console.log('Dddddata:', data, props)
   // Conditionally render loader or error or WrappedComponent
   return (
     <>
@@ -55,7 +56,7 @@ const withData = (endpoint, dataToState) => (WrappedComponent) => {
       {hasError && (
         <p>Oops, an error sneaked in here! Try to refresh the page.</p>
       )}
-      <WrappedComponent data={data} />
+      <WrappedComponent {...props} {...data} />
     </>
   )
 }

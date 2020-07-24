@@ -4,8 +4,8 @@ import withData from './withData'
 import List from './List'
 
 const UserList = (props) => {
-  console.log(props)
-  return withData(process.env.REACT_APP_USERS_URL, props.users)(List)
+  console.log('UserList: ', props)
+  return withData(process.env.REACT_APP_USERS_URL, 'users', props)(List)
 }
 
 UserList.propTypes = {}

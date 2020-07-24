@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function UserButton(props) {
-  const { id } = props
+  const { id, isSelected } = props
 
   const handleClick = (e) => {
     console.log(id)
@@ -10,7 +10,10 @@ function UserButton(props) {
   }
 
   return (
-    <button className="user-name" onClick={handleClick}>
+    <button
+      className="user-name"
+      onClick={handleClick}
+      aria-pressed={isSelected}>
       {props.children}
     </button>
   )
