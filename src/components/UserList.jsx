@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withData from './withData'
 import List from './List'
+import withData from './withData'
 
 const UserList = (props) => {
   console.log('UserList: ', props)

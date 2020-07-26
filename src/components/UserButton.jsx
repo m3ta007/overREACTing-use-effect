@@ -5,7 +5,7 @@ function UserButton(props) {
   const { id, isSelected } = props
 
   const handleClick = (e) => {
-    console.log(id)
+    console.log('UserButton clicked: ', id)
     props.onClick(id)
   }
 
