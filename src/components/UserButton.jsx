@@ -5,7 +5,6 @@ function UserButton(props) {
   const { id, isSelected } = props
 
   const handleClick = (e) => {
-    console.log('UserButton clicked: ', id)
     props.onClick(id)
   }
 
@@ -19,6 +18,12 @@ function UserButton(props) {
   )
 }
 
-UserButton.propTypes = {}
+UserButton.propTypes = {
+  props: PropTypes.objectOf({
+    id: PropTypes.number.isRequired,
+    isSelected: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+}
 
 export default UserButton

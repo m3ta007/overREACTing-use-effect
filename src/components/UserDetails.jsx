@@ -85,6 +85,13 @@ function UserDetails(props) {
   )
 }
 
-UserDetails.propTypes = {}
+UserDetails.propTypes = {
+  props: PropTypes.objectOf({
+    info: PropTypes.objectOf({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
+}
 
 export default UserDetails

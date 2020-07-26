@@ -6,7 +6,7 @@ import UserDetails from './components/UserDetails'
 
 function App() {
   const [users, setUsers] = useState([])
-  const [isSelected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null)
 
   // Handle user list fetch from API
   const handleUsersFetch = (users) => {
@@ -16,23 +16,23 @@ function App() {
   // Handle name activation via UserButton
   const handleClick = (id) => {
     // Check if already selected
-    if (isSelected !== id) {
+    if (selected !== id) {
       setSelected(id)
     }
     users.filter((o) => o.id !== id)
   }
   // Lift selected user info down
-  const userSelected = users.filter((o) => o.id === isSelected)
+  const userSelected = users.filter((o) => o.id === selected)
 
   return (
     <div className="container">
       <List
         users={users}
         onClick={handleClick}
-        selected={isSelected}
+        selected={selected}
         onFetch={handleUsersFetch}
       />
-      {isSelected && <UserDetails info={userSelected[0]} />}
+      {selected && <UserDetails info={userSelected[0]} />}
     </div>
   )
 }

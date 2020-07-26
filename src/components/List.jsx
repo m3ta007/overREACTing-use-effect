@@ -75,6 +75,18 @@ function List(props) {
   )
 }
 
-List.propTypes = {}
+List.propTypes = {
+  props: PropTypes.objectOf({
+    users: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    selected: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+    onFetch: PropTypes.func.isRequired,
+  }),
+}
 
 export default List
