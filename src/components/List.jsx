@@ -61,11 +61,11 @@ import UserButton from './UserButton'
 // }
 
 function List(props) {
-  console.log('List: ', props)
+  console.log('List: ', props, 'users are:   ', props.users)
   const { users, selected } = props
 
   const handleClick = (id) => {
-    console.log(id)
+    console.log('List - selected id: ', id)
     props.onClick(id)
   }
 
